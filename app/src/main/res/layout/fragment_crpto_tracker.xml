@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/spacing_15"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.CrptoTrackerFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/containerPrice"
+        android:layout_margin="@dimen/spacing_15">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Bitcoin"
+                android:id="@+id/tvLabel1"
+                android:textSize="29sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabel1"
+                android:text="BTC"
+                android:textSize="23sp"
+                android:id="@+id/tvLabel2"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabel2"
+                android:text="@string/price_dollar"
+                android:id="@+id/tvPriceLabelDollar"
+                android:layout_marginTop="@dimen/spacing_15"
+                android:textSize="@dimen/font_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceLabelDollar"
+                tools:text="00.000000"
+                android:textSize="@dimen/font_23"
+                android:textColor="@android:color/black"
+                android:id="@+id/tvPriceValueDollar"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceValueDollar"
+                android:text="@string/price_euro"
+                android:id="@+id/tvPriceLabelEuro"
+                android:layout_marginTop="@dimen/spacing_15"
+                android:textSize="@dimen/font_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceLabelEuro"
+                tools:text="00.000000"
+                android:textSize="@dimen/font_23"
+                android:textColor="@android:color/black"
+                android:id="@+id/tvPriceValueEuro"
+                android:textStyle="bold"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etMinValue"
+        android:hint="Enter Min value"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/containerPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/spacing_15"
+        android:layout_marginTop="@dimen/spacing_15"
+        app:layout_constraintEnd_toStartOf="@+id/btnMinValue"
+        ></androidx.appcompat.widget.AppCompatEditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMinValue"
+        app:layout_constraintTop_toBottomOf="@+id/containerPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/etMinValue"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Submit"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etMaxValue"
+        android:hint="Enter Max value"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/btnMinValue"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/spacing_15"
+        android:layout_marginTop="@dimen/spacing_15"
+        app:layout_constraintEnd_toStartOf="@+id/btnMaxValue"
+        ></androidx.appcompat.widget.AppCompatEditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMaxValue"
+        app:layout_constraintTop_toBottomOf="@+id/btnMinValue"
+        app:layout_constraintBottom_toBottomOf="@+id/etMaxValue"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Submit"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentTime"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="#BDBDBD"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
