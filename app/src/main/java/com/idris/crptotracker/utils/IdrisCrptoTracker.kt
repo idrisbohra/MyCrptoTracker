@@ -1,6 +1,7 @@
 package com.idris.crptotracker.utils
 
 import android.app.Application
+import androidx.lifecycle.ProcessLifecycleOwner
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -10,5 +11,16 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class IdrisCrptoTracker : Application() {
 
-    override fun onCreate() { super.onCreate() }
+    var appLifecycleObserver: AppLifeCycleObserver? = null
+
+    override fun onCreate() {
+        super.onCreate()
+        initLifeCycleObserver()
+    }
+
+    fun initLifeCycleObserver() {
+        appLifecycleObserver = AppLifeCycleObserver()
+        ProcessLifecycleOwner.get().lifecycle.addObserver(appLifecycleObserver!!)
+    }
+
 }

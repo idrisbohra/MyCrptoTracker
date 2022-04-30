@@ -21,18 +21,22 @@ class GetPriceWorker(context: Context, workerParams: WorkerParameters) : Worker(
         {
             if(SharedPreferenceUtils.getFloatPreference(applicationContext, SharedPreferenceUtils.PREF_CURRENT_RATE) <
                 SharedPreferenceUtils.getFloatPreference(applicationContext, SharedPreferenceUtils.PREF_MIN_RATE))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    applicationContext.startForegroundService(Intent(applicationContext, NotificationService::class.java))
-                } else {
-                    applicationContext.startService(Intent(applicationContext, NotificationService::class.java))
+                if(!Utils.isAppOnForeground){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        applicationContext.startForegroundService(Intent(applicationContext, NotificationService::class.java))
+                    } else {
+                        applicationContext.startService(Intent(applicationContext, NotificationService::class.java))
+                    }
                 }
             else if(SharedPreferenceUtils.getFloatPreference(applicationContext, SharedPreferenceUtils.PREF_CURRENT_RATE) >
                     SharedPreferenceUtils.getFloatPreference(applicationContext, SharedPreferenceUtils.PREF_MAX_RATE))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    applicationContext.startForegroundService(Intent(applicationContext, NotificationService::class.java))
-                } else {
-                    applicationContext.startService(Intent(applicationContext, NotificationService::class.java))
-                }
+                    if(!Utils.isAppOnForeground){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            applicationContext.startForegroundService(Intent(applicationContext, NotificationService::class.java))
+                        } else {
+                            applicationContext.startService(Intent(applicationContext, NotificationService::class.java))
+                        }
+                    }
         }
         Utils.fetchData(applicationContext)
         return Result.success()

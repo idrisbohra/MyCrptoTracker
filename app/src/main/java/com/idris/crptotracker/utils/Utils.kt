@@ -16,6 +16,7 @@ public class Utils {
     companion object {
 
         var mCrptoTrackListener: CrptoTrackListener?=null
+        var isAppOnForeground: Boolean = true
 
         // schedule the start of the service every 10 - 30 seconds
         fun scheduleJob(context: Context, crptoTrackListener: CrptoTrackListener?) {
